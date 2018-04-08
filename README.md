@@ -5,4 +5,4 @@ Homeworks for assembler course in ITMO
 
 2) Printing decimal 32-bit signed number, using printf from C library
 
-3) computing arctan(x) using Teylor series
+3) computing arctan(x) using Teylor series and FPU
