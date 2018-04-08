@@ -2,7 +2,7 @@
 
 extern _printf
 section .text
-global _main
+global _main_print
 
 ; процедура заполняет buffer цифрами целого положительного числа
 ; eax - целое положительное число
@@ -47,7 +47,7 @@ _unsigned_number_to_string
 ; конец процедуры
 
 ; точка входа в программу
-_main:
+_main_print:
 	; целое число
 	mov eax, -2147483648
 

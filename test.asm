@@ -1,7 +1,7 @@
 extern _printf
 section .text
-global _main
-_main2:
+global _main_test
+_main_test:
 push string
 push format
 call _printf
