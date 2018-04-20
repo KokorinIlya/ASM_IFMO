@@ -1,8 +1,12 @@
 # ASM_IFMO
-Homeworks for assembler course in ITMO
 
-1) Printing "Hello, world" using printf from C library
+# Домашние задания и лабораторные по курсу "Ассемблер" в университете ИТМО
 
-2) Printing decimal 32-bit signed number, using printf from C library
+## Домашнее задание № 1
+Вывести на экран "Hello, world", воспользовавшись функцией printf из стандартной библиотеки языка C
 
-3) computing arctan(x) using Teylor series and FPU
+## Домашнее задание № 2
+Вывести на экран 32-х битное знаковое число, воспользовавшись функцией printf из стандартной библиотеки языка C
+
+## Домашнее задание № 3
+Посчитать сумму k первых членов разложения функции arctg(x) в ряд Тейлора с помощью сопроцессора 
