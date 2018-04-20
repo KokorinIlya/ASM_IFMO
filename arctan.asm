@@ -15,7 +15,7 @@ _arctan:
 	je return_x
 
 	fld st0 ; стек: x, x
-	fmul st0, st1 ; стек: x^2, x
+	fmul st1 ; стек: x^2, x
 	fchs ; стек: -x^2, x
 	fstp dword [NUMERATOR_MUL] ; стек: x
 	fld1 ; стек: 1.0, x
