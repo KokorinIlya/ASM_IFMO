@@ -5,9 +5,9 @@ _arctan_scalar:
 	; скалярные операции SSE работают по старшему биту xmm-регистра
 
 	mov eax, [esp + 4]
-	mov [CUR_NUM_ARR], eax
-	; старшее двойное слово CUR_NUM_ARR = x
-	movups xmm0, [CUR_NUM_ARR]
+	mov [BUFFER], eax
+	; старшее двойное слово BUFFER = x
+	movups xmm0, [BUFFER]
 	; старшее двойное слово xmm0 - x
 	; в старшем двойном слове xmm0 хранится текущий числитель
 
@@ -15,8 +15,8 @@ _arctan_scalar:
 	; ecx - количество ненулевых членов в разложении artcg(x) в степенной ряд
 
 	mov ebx, [TWO]
-	mov [TWO_ARR], ebx
-	movups xmm1, [TWO_ARR]
+	mov [BUFFER], ebx
+	movups xmm1, [BUFFER]
 	; инициализация xmm1, в старшем двойном слове хранится 2.0
 	
 	; если k <= 0, вернуть 0
@@ -24,14 +24,14 @@ _arctan_scalar:
 	jle return_zero
 
 	mov ebx, [ONE]
-	mov [CUR_DEN_ARR], ebx
-	movups xmm2, [CUR_DEN_ARR]
+	mov [BUFFER], ebx
+	movups xmm2, [BUFFER]
 	; инициализация xmm2 значением 1.0
 	; в xmm2 хранится текущий числитель
 
 	mov ebx, [MINUS_ONE]
-	mov [MUL_NUM_ARR], ebx
-	movups xmm7, [MUL_NUM_ARR]
+	mov [BUFFER], ebx
+	movups xmm7, [BUFFER]
 	; в старшем двойном слове xmm7 хранится -1
 	
 	movups xmm3, xmm0
@@ -69,8 +69,8 @@ _arctan_scalar:
 		; инициализируем FPU чтобы вернуть на его вершине значение
 		finit
 
-		movups [CUR_DEN_ARR], xmm4
-		fld dword [CUR_DEN_ARR]
+		movups [BUFFER], xmm4
+		fld dword [BUFFER]
 		ret
 
 	return_zero:
@@ -84,15 +84,5 @@ section .rdata
 	MINUS_ONE : dd -1.0
 
 section .bss
-	; в старшем двойном слове хранится текущий числитель (x, -x^3, x^5, -x^7, ...)
-	CUR_NUM_ARR : resd 4
-
-	; в старшем двойном слове хранится константа 2.0, которая на каждом шаге прибавляется к 
-	; знаменателю
-	TWO_ARR : resd 4
-
-	; в старшем двойном слове хранится текущий знаменатель (1, 3, 5, 7, ...)
-	CUR_DEN_ARR : resd 4
-
-	; в старшем двойном слове хранится -x^2 - то, на что будет умножаться числитель на каждом шаге
-	MUL_NUM_ARR : resd 4
+	; Буфер для переноса в mmx-регистр из памяти или регистров общего назначени
+	BUFFER : resd 4
