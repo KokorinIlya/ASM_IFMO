@@ -2,6 +2,7 @@ section .text
 global _arctan_scalar
 
 _arctan_scalar:
+
 	; скалярные операции SSE работают по старшему биту xmm-регистра
 
 	mov eax, [esp + 4]
@@ -14,8 +15,8 @@ _arctan_scalar:
 	mov ecx, [esp + 8]
 	; ecx - количество ненулевых членов в разложении artcg(x) в степенной ряд
 
-	mov ebx, [TWO]
-	mov [BUFFER], ebx
+	mov edx, [TWO]
+	mov [BUFFER], edx
 	movups xmm1, [BUFFER]
 	; инициализация xmm1, в старшем двойном слове хранится 2.0
 	
@@ -23,14 +24,14 @@ _arctan_scalar:
 	cmp ecx, 0
 	jle return_zero
 
-	mov ebx, [ONE]
-	mov [BUFFER], ebx
+	mov edx, [ONE]
+	mov [BUFFER], edx
 	movups xmm2, [BUFFER]
 	; инициализация xmm2 значением 1.0
 	; в xmm2 хранится текущий числитель
 
-	mov ebx, [MINUS_ONE]
-	mov [BUFFER], ebx
+	mov edx, [MINUS_ONE]
+	mov [BUFFER], edx
 	movups xmm7, [BUFFER]
 	; в старшем двойном слове xmm7 хранится -1
 	

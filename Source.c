@@ -25,6 +25,9 @@ short* __cdecl ternary(short* cont, short* f, short* s);
 
 float __cdecl arctan_scalar(float x, int k);
 
+void __cdecl print(char *out_buf, const char *format, const char *hex_number);
+
+
 int main()
 {
 	//printf("%f\n", 4 * arctan(1, 400));

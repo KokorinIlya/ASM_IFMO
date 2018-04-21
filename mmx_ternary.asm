@@ -7,10 +7,10 @@ _ternary:
 	emms
 
 	; eax - адрес первого массива слов (контрольная последовательность), снятый со стека
-	; ebx - второго (первые варианты)
+	; edx - второго (первые варианты)
 	; ecx - третьего (вторые варианты)
 	mov eax, [esp + 4]
-	mov ebx, [esp + 8]
+	mov edx, [esp + 8]
 	mov ecx, [esp + 12]
 
 	; mm1 - контрольная последовательность (cseq)
@@ -18,7 +18,7 @@ _ternary:
 	; mm3 - вторая последовательность слов (s)
 	; res[i] = (cseq[i] != 0x00) ? f[i] : s[i]
 	movq mm1, [eax]
-	movq mm2, [ebx]
+	movq mm2, [edx]
 	movq mm3, [ecx]
 
 	pcmpeqw mm1, [ZERO]
@@ -52,6 +52,7 @@ _ternary:
 
 	; возвращаем адрес памяти, куда записан результат
 	mov eax, answer
+
 	ret
 
 section .bss
