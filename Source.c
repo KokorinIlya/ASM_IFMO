@@ -16,23 +16,12 @@ float __cdecl arctan_scalar(float x, int k);
 
 void __cdecl print(char *out_buf, const char *format, const char *hex_number);
 
+short __cdecl max_short(const short* ptr, int len);
 
 int main()
 {
-	//printf("%f\n", 4 * arctan(1, 400));
-
-	/*short f[] = { 1, 2, 3, 4 };
-	short s[] = { 5, 6, 7, 8};
-	short c[] = { 0, 1, 0, 1};
-	short* ans = ternary(c, f, s);
-	for (int i = 0; i < 4; i++)
-	{
-		printf("%hu ", *(ans + i));
-	}
-	printf("\n");*/
-
-	float f = 4 * arctan_scalar(1, 100000);
-	printf("%f\n", f);
-
+	short arr[] = { 37, 13, 14, 100, 1, 101, 3, 4, -97, 2, 3, 21, 17, 25, 3, -1, -1, 102 };
+	short res = max_short(arr, 18);
+	printf("%hd\n", res);
 	return 0;
 }

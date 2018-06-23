@@ -3,6 +3,7 @@ global _ternary
 
 _ternary:
 
+
 	;  инициализировать mmx, пометив регистры FPU как свободные
 	emms
 
