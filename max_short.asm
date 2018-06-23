@@ -56,7 +56,7 @@ _process_tail
 	pop ebx
 	ret
 
-; функция выбираем максимум из массива чисел типа short
+; функция выбирает максимум из массива чисел типа short
 ; len > 0
 _max_short:
 	mov eax, [esp + 4]

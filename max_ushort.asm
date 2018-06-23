@@ -12,7 +12,7 @@ section .text
 global _max_ushort
 
 ; функция выбирает максимум из 4 переданных ей чисел
-; все числа типа short
+; все числа типа ushort
 _max_from_4:	
 	mov ax, [esp + 4]
 
@@ -35,7 +35,7 @@ _max_from_4:
 
 ; функция обрабатывает "хвост" массива (от 0 до 3 элементов)
 ; сигнатура:
-; process_tail(short cur_res, short* ptr_to_tail, int tail_size)
+; process_tail(ushort cur_res, ushort* ptr_to_tail, int tail_size)
 _process_tail
 	push ebx
 	; на стеке лежит ebx, ко всем адресам на стеке прибавляется 4
@@ -54,7 +54,7 @@ _process_tail
 		jge ret_tail
 		mov bx, [edx + ecx * 2]
 		; bx - текущее число
-		; каждое из чисел - short, так что ходим по памяти с шагом 2
+		; каждое из чисел - ushort, так что ходим по памяти с шагом 2
 
 		xor bx, [XORS]
 		; инвертируем бит
@@ -71,7 +71,7 @@ _process_tail
 	pop ebx
 	ret
 
-; функция выбираем максимум из массива чисел типа short
+; функция выбирает максимум из массива чисел типа ushort
 ; len > 0
 _max_ushort:
 	mov eax, [esp + 4]
@@ -156,7 +156,7 @@ _max_ushort:
 		; обработаны все блоки по 4 элемента
 		; выберем максимум из 4 чисел основного набора
 
-		; освободить на стеке место для 4 short'ов (4 * 2)
+		; освободить на стеке место для 4 ushort'ов (4 * 2)
 		sub esp, 16
 
 		; записать на стек 4 числа из основного набора
@@ -192,7 +192,7 @@ _max_ushort:
 
 section .data
 
-	; указатель на начало массива short
+	; указатель на начало массива ushort
 	ARRAY : dd 0
 
 	; длина массива
