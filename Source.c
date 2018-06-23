@@ -20,11 +20,18 @@ short __cdecl max_short(const short* ptr, int len);
 
 unsigned short __cdecl max_ushort(const unsigned short* ptr, int len);
 
+void __cdecl vector_mul(int* result, const short* a, const short* b);
+
 int main()
 {
-	unsigned short arr[] = 
-		{ 37, 13, 14, 100, 1, 101, 3, 4, 1, 2, 3, 21, 65532, 25, 3, 1, 2, 65533 };
-	unsigned short res = max_ushort(arr, 18);
-	printf("%hu\n", res);
+	short a[] = { 10000, 15000, 20000, 25000 };
+	short b[] = { 10000, 15000, 20000, 25000 };
+	int res[4];
+
+	vector_mul(res, a, b);
+	for (int i = 0; i < 4; i++)
+	{
+		printf("%i ", res[i]);
+	}
 	return 0;
 }
